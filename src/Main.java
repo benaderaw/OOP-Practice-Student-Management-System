@@ -42,6 +42,36 @@ public class Main {
             }
         }
 
-        System.out.println(studentsArray);
+        // student statistics
+        System.out.println("\n=== Student Statistics ===");
+        int averageAge = averageAge(studentsArray);
+        double averageHeight = averageHeight(studentsArray);
+
+        System.out.println("Average age: " + averageAge);
+        System.out.println("Average height: " + averageHeight + " feet");
+    }
+
+    // calculate average age
+    // not returning double - no need to be precise
+    public static int averageAge(ArrayList<Student> studentArray){
+        int ageSum = 0;
+
+        for(Student student: studentArray){
+           ageSum += student.age;
+        }
+
+        return ageSum / studentArray.size();
+    }
+
+    // calculate average height
+    // return double
+    public static double averageHeight(ArrayList<Student> studentArray){
+        double heightSum = 0.0;
+
+        for(Student student: studentArray){
+            heightSum += student.height;
+        }
+
+        return heightSum / studentArray.size();
     }
 }
