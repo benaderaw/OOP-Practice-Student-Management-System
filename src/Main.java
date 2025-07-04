@@ -14,7 +14,7 @@ public class Main {
         addStudent(studentsArray, scanner);
 
         // student statistics
-        System.out.println("\n=== Student Statistics ===");
+        System.out.println("\n=== STUDENT STATISTICS ===");
 
         if(!studentsArray.isEmpty()){
             int averageAge = averageAge(studentsArray);
@@ -31,9 +31,6 @@ public class Main {
         if(studentsArray.isEmpty()){
             System.out.println("No students found...");
         }
-
-
-
     }
 
 
@@ -65,13 +62,28 @@ public class Main {
                 double heightInput = scanner.nextDouble();
                 scanner.nextLine();
 
+                // create new student object and add to students array
                 Student student = new Student(nameInput, rollNumInput, ageInput, heightInput);
                 studentsArray.add(student);
+
+                // display all added students
+                viewStudents(studentsArray);
 
             }else if(userInput.equals("n")){
                 break;
             }
         }
+    }
+
+    // view all students after a new student gets added
+    public static void viewStudents(ArrayList<Student> studentsArray){
+        System.out.println("\n=== ALL STUDENTS ===");
+
+        for(Student student: studentsArray){
+            System.out.printf("Name: %s\tRoll #: %d\tAge: %d\t Height: %.1f\n", student.name, student.rollNumber, student.age, student.height);
+        }
+
+        System.out.println("");
     }
 
     // calculate average age
@@ -101,8 +113,8 @@ public class Main {
     // oldest student
     // returns Student instance object
     public static Student oldestStudent(ArrayList<Student> studentArray){
-        int oldestAge = studentArray.getFirst().age;
-        Student oldestStudent = studentArray.getFirst();
+        int oldestAge = studentArray.get(0).age;
+        Student oldestStudent = studentArray.get(0);
 
         for(Student student: studentArray){
             if(student.age > oldestAge){
@@ -115,8 +127,8 @@ public class Main {
     // tallest student
     // returns Student instance object
     public static Student tallestStudent(ArrayList<Student> studentArray){
-        double tallestHeight = studentArray.getFirst().height;
-        Student tallestStudent = studentArray.getFirst();
+        double tallestHeight = studentArray.get(0).height;
+        Student tallestStudent = studentArray.get(0);
 
         for(Student student: studentArray){
             if(student.height > tallestHeight){
