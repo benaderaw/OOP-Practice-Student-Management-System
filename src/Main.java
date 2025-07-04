@@ -10,6 +10,38 @@ public class Main {
         // student array - arraylist of student objects
         ArrayList<Student> studentsArray = new ArrayList<>();
 
+        // add student - prompt user to add new students and details
+        addStudent(studentsArray, scanner);
+
+        // student statistics
+        System.out.println("\n=== Student Statistics ===");
+
+        if(!studentsArray.isEmpty()){
+            int averageAge = averageAge(studentsArray);
+            double averageHeight = averageHeight(studentsArray);
+            Student oldestStudent = oldestStudent(studentsArray);
+            Student tallestStudent = tallestStudent(studentsArray);
+
+            System.out.println("Average age: " + averageAge);
+            System.out.println("Average height: " + averageHeight + " feet");
+            System.out.println("Oldest student: " + oldestStudent.name + ", " + oldestStudent.age  + " [ Roll Number: " + oldestStudent.rollNumber + " ]");
+            System.out.println("Tallest student: " + tallestStudent.name + ", " + tallestStudent.height + " [ Roll Number: " + tallestStudent.rollNumber + " ]");
+        }
+
+        if(studentsArray.isEmpty()){
+            System.out.println("No students found...");
+        }
+
+
+
+    }
+
+
+    // ===================================
+    // ===================================
+
+    // add new student
+    public static void addStudent(ArrayList<Student> studentsArray, Scanner scanner){
         while(true){
             System.out.print("Add a new student? y/n: ");
             String userInput = scanner.nextLine().toLowerCase().trim();
@@ -37,18 +69,9 @@ public class Main {
                 studentsArray.add(student);
 
             }else if(userInput.equals("n")){
-                System.out.println("Goodbye 👋");
                 break;
             }
         }
-
-        // student statistics
-        System.out.println("\n=== Student Statistics ===");
-        int averageAge = averageAge(studentsArray);
-        double averageHeight = averageHeight(studentsArray);
-
-        System.out.println("Average age: " + averageAge);
-        System.out.println("Average height: " + averageHeight + " feet");
     }
 
     // calculate average age
@@ -73,5 +96,33 @@ public class Main {
         }
 
         return heightSum / studentArray.size();
+    }
+
+    // oldest student
+    // returns Student instance object
+    public static Student oldestStudent(ArrayList<Student> studentArray){
+        int oldestAge = studentArray.getFirst().age;
+        Student oldestStudent = studentArray.getFirst();
+
+        for(Student student: studentArray){
+            if(student.age > oldestAge){
+                oldestStudent = student;
+            }
+        }
+        return oldestStudent;
+    }
+
+    // tallest student
+    // returns Student instance object
+    public static Student tallestStudent(ArrayList<Student> studentArray){
+        double tallestHeight = studentArray.getFirst().height;
+        Student tallestStudent = studentArray.getFirst();
+
+        for(Student student: studentArray){
+            if(student.height > tallestHeight){
+                tallestStudent = student;
+            }
+        }
+        return tallestStudent;
     }
 }
