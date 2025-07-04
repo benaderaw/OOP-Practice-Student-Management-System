@@ -13,6 +13,7 @@ public class Main {
 //        studentsArray.add(new Student("Ben", 77, 19, 5.9));
 //        studentsArray.add(new Student("Mike", 300, 15, 9));
 //        studentsArray.add(new Student("big T", 35, 18, 10.5));
+//        studentsArray.add(new Student("big T", 35, 18, 10.5));
 
 
         // add student - prompt user to add new students and details
